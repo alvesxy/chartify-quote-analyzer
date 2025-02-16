@@ -7,12 +7,16 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 
 const fetchStockData = async (quote: string) => {
-  if (!quote) return null;
+  if (!quote) throw new Error("O ativo não pode estar vazio");
+
   const response = await fetch(`https://computress.up.railway.app/v1/ticket?quote=${quote}`);
+  const data = await response.json();
+
   if (!response.ok) {
-    throw new Error("Falha ao buscar dados da ação");
+    throw new Error(data.message || "Falha ao buscar dados da ação");
   }
-  return response.json();
+
+  return data;
 };
 
 const Index = () => {
