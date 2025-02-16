@@ -38,6 +38,27 @@ const Index = () => {
     refetch();
   };
 
+  const handleDownload = () => {
+    if (!data) return;
+    
+    const jsonString = JSON.stringify(data, null, 2);
+    const blob = new Blob([jsonString], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${quote.toLowerCase()}_analysis.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    toast({
+      title: "Sucesso",
+      description: "Arquivo JSON baixado com sucesso",
+    });
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 py-12">
@@ -64,6 +85,13 @@ const Index = () => {
                 disabled={isLoading}
               >
                 {isLoading ? "Analisando..." : "Analisar"}
+              </Button>
+              <Button
+                onClick={handleDownload}
+                className="w-full bg-green-600 hover:bg-green-700 transition-colors"
+                disabled={!data || data.length === 0}
+              >
+                Baixar JSON
               </Button>
             </div>
           </div>
