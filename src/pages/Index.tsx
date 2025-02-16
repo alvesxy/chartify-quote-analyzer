@@ -68,31 +68,38 @@ const Index = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="md:col-span-1 space-y-6 bg-white p-6 rounded-xl shadow-sm">
-            <div className="space-y-4">
-              <label className="block text-sm font-medium text-gray-700">
-                Código da Ação
-              </label>
-              <Input
-                placeholder="Ex: PETR4"
-                value={quote}
-                onChange={(e) => setQuote(e.target.value.toUpperCase())}
-                className="w-full"
-              />
-              <Button
-                onClick={handleAnalyze}
-                className="w-full bg-indigo-600 hover:bg-indigo-700 transition-colors"
-                disabled={isLoading}
-              >
-                {isLoading ? "Analisando..." : "Analisar"}
-              </Button>
-              <Button
-                onClick={handleDownload}
-                className="w-full bg-green-600 hover:bg-green-700 transition-colors"
-                disabled={!data || data.length === 0}
-              >
-                Baixar JSON
-              </Button>
+          <div className="md:col-span-1 grid grid-cols-1 gap-4">
+            <div className="bg-white p-6 rounded-xl shadow-sm flex flex-col items-center justify-center">
+              <div className="w-full space-y-4">
+                <label className="block text-sm font-medium text-gray-700 text-center">
+                  Código da Ação
+                </label>
+                <Input
+                  placeholder="Ex: PETR4"
+                  value={quote}
+                  onChange={(e) => setQuote(e.target.value.toUpperCase())}
+                  className="w-full"
+                />
+                <Button
+                  onClick={handleAnalyze}
+                  className="w-full bg-indigo-600 hover:bg-indigo-700 transition-colors"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Analisando..." : "Analisar"}
+                </Button>
+              </div>
+            </div>
+            
+            <div className="bg-white p-6 rounded-xl shadow-sm flex flex-col items-center justify-center">
+              <div className="w-full">
+                <Button
+                  onClick={handleDownload}
+                  className="w-full bg-green-600 hover:bg-green-700 transition-colors"
+                  disabled={!data || data.length === 0}
+                >
+                  Baixar dados completo
+                </Button>
+              </div>
             </div>
           </div>
 
