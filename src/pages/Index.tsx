@@ -67,8 +67,14 @@ const Index = () => {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Análise de Ações</h1>
-          <p className="text-gray-600">Insira o código da ação para visualizar a previsão de preços</p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">Análise de Ativos Digitais</h1>
+          <p className="text-gray-600">Insira o código do ativo para visualizar a previsão de preços</p>
+          <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <p className="text-sm text-yellow-700">
+              Importante: Para criptomoedas, utilize o código do par de negociação (ETF). 
+              Por exemplo: BTCUSDT para Bitcoin/USDT.
+            </p>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -76,10 +82,10 @@ const Index = () => {
             <div className="bg-white p-6 rounded-xl shadow-sm flex flex-col items-center justify-center">
               <div className="w-full space-y-4">
                 <label className="block text-sm font-medium text-gray-700 text-center">
-                  Código da Ação
+                  Código do Ativo
                 </label>
                 <Input
-                  placeholder="Ex: PETR4"
+                  placeholder="Ex: BTCUSDT"
                   value={quote}
                   onChange={(e) => setQuote(e.target.value.toUpperCase())}
                   className="w-full"
@@ -110,7 +116,7 @@ const Index = () => {
           <div className="md:col-span-2 bg-white p-6 rounded-xl shadow-sm">
             {error ? (
               <div className="text-center text-red-500 py-8">
-                Ocorreu um erro ao buscar os dados. Por favor, tente novamente.
+                {error instanceof Error ? error.message : "Ocorreu um erro ao buscar os dados. Por favor, tente novamente."}
               </div>
             ) : data && data.length > 0 ? (
               <div className="h-[400px]">
@@ -146,7 +152,7 @@ const Index = () => {
               </div>
             ) : (
               <div className="text-center text-gray-500 py-8">
-                Insira um código de ação e clique em analisar para ver o gráfico
+                Insira um código de ativo e clique em analisar para ver o gráfico
               </div>
             )}
           </div>
