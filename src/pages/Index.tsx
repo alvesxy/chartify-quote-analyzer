@@ -71,8 +71,8 @@ const Index = () => {
           <p className="text-gray-600">Insira o código do ativo para visualizar a previsão de preços</p>
           <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
             <p className="text-sm text-yellow-700">
-              Importante: Para criptomoedas, utilize o código do par de negociação (ETF). 
-              Por exemplo: BTCUSDT para Bitcoin/USDT.
+              Importante: Criptomoedas são listadas com pares. Por exemplo, para prever o preço do bitcoin, use BTC-USD.
+              Caso você use apenas BTC, o valor será relacionado ao ETF dele.
             </p>
           </div>
         </div>
@@ -85,7 +85,7 @@ const Index = () => {
                   Código do Ativo
                 </label>
                 <Input
-                  placeholder="Ex: BTCUSDT"
+                  placeholder="Ex: BTC-USD"
                   value={quote}
                   onChange={(e) => setQuote(e.target.value.toUpperCase())}
                   className="w-full"
